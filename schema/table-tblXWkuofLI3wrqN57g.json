@@ -1,0 +1,51 @@
+{
+  "id": "tblXWkuofLI3wrqN57g",
+  "name": "کاربران همیار لیارا",
+  "description": null,
+  "dbTableName": "\"bseZ0SdYrjg6flmN52n\".\"tblXWkuofLI3wrqN57g\"",
+  "fields": [
+    {
+      "id": "fldk3ObsQvK5NGfQ9t6",
+      "name": "ایمیل",
+      "dbFieldName": "ymyl",
+      "type": "singleLineText",
+      "description": null,
+      "options": {},
+      "cellValueType": "string",
+      "isLookup": null,
+      "isComputed": null,
+      "isMultipleCellValue": false
+    },
+    {
+      "id": "fldLELOZ62d6p8mxmFo",
+      "name": "نام",
+      "dbFieldName": "nm",
+      "type": "singleLineText",
+      "description": null,
+      "options": {},
+      "cellValueType": "string",
+      "isLookup": null,
+      "isComputed": null,
+      "isMultipleCellValue": false
+    },
+    {
+      "id": "fldOzUHrtV0nqZ01jna",
+      "name": "زمان ایجاد",
+      "dbFieldName": "zmn_yjd",
+      "type": "createdTime",
+      "description": null,
+      "options": {
+        "expression": "CREATED_TIME()",
+        "formatting": {
+          "date": "YYYY-MM-DD",
+          "time": "None",
+          "timeZone": "Asia/Tehran"
+        }
+      },
+      "cellValueType": "dateTime",
+      "isLookup": null,
+      "isComputed": true,
+      "isMultipleCellValue": false
+    }
+  ]
+}

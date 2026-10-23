@@ -1,0 +1,1626 @@
+{
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "conjunction": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            },
+            "items": {
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "conjunction",
+            "items"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/__schema0"
+            }
+          },
+          "required": [
+            "not"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "fieldId": {
+              "type": "string"
+            },
+            "operator": {
+              "enum": [
+                "is",
+                "isNot",
+                "contains",
+                "doesNotContain",
+                "isEmpty",
+                "isNotEmpty",
+                "isGreater",
+                "isGreaterEqual",
+                "isLess",
+                "isLessEqual",
+                "isAnyOf",
+                "isNoneOf",
+                "hasAnyOf",
+                "hasAllOf",
+                "isNotExactly",
+                "hasNoneOf",
+                "isExactly",
+                "isWithIn",
+                "isBefore",
+                "isAfter",
+                "isOnOrBefore",
+                "isOnOrAfter"
+              ],
+              "type": "string"
+            },
+            "optional": {
+              "type": "boolean"
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "parameter",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          },
+                          "minItems": 1,
+                          "type": "array"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "exactDate": {
+                              "format": "date-time",
+                              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                              "type": "string"
+                            },
+                            "exactDateEnd": {
+                              "format": "date-time",
+                              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                              "type": "string"
+                            },
+                            "mode": {
+                              "enum": [
+                                "today",
+                                "tomorrow",
+                                "yesterday",
+                                "currentWeek",
+                                "currentMonth",
+                                "currentYear",
+                                "lastWeek",
+                                "lastMonth",
+                                "lastYear",
+                                "nextWeekPeriod",
+                                "nextMonthPeriod",
+                                "nextYearPeriod",
+                                "oneWeekAgo",
+                                "oneWeekFromNow",
+                                "oneMonthAgo",
+                                "oneMonthFromNow",
+                                "daysAgo",
+                                "daysFromNow",
+                                "exactDate",
+                                "dateRange",
+                                "exactDateTime",
+                                "exactFormatDate",
+                                "pastWeek",
+                                "pastMonth",
+                                "pastYear",
+                                "nextWeek",
+                                "nextMonth",
+                                "nextYear",
+                                "pastNumberOfDays",
+                                "nextNumberOfDays"
+                              ],
+                              "type": "string"
+                            },
+                            "numberOfDays": {
+                              "maximum": 9007199254740991,
+                              "minimum": 0,
+                              "type": "integer"
+                            },
+                            "timeZone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "mode",
+                            "timeZone"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "fieldId": {
+                              "type": "string"
+                            },
+                            "tableId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "const": "field",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "fieldId"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "fieldId",
+            "operator",
+            "value"
+          ],
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "queries": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "definition": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "filter": {
+                    "$ref": "#/$defs/__schema0"
+                  },
+                  "kind": {
+                    "const": "records",
+                    "type": "string"
+                  },
+                  "page": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "includeTotal": {
+                        "type": "boolean"
+                      },
+                      "limit": {
+                        "anyOf": [
+                          {
+                            "maximum": 1000,
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "type": {
+                                "const": "parameter",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "name"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "offset": {
+                        "anyOf": [
+                          {
+                            "maximum": 2147483647,
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "type": {
+                                "const": "parameter",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "name"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "limit"
+                    ],
+                    "type": "object"
+                  },
+                  "parameters": {
+                    "additionalProperties": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "default": {
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "anyOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "items": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "boolean"
+                                      }
+                                    ]
+                                  },
+                                  "minItems": 1,
+                                  "type": "array"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "exactDate": {
+                                      "format": "date-time",
+                                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                                      "type": "string"
+                                    },
+                                    "exactDateEnd": {
+                                      "format": "date-time",
+                                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                                      "type": "string"
+                                    },
+                                    "mode": {
+                                      "enum": [
+                                        "today",
+                                        "tomorrow",
+                                        "yesterday",
+                                        "currentWeek",
+                                        "currentMonth",
+                                        "currentYear",
+                                        "lastWeek",
+                                        "lastMonth",
+                                        "lastYear",
+                                        "nextWeekPeriod",
+                                        "nextMonthPeriod",
+                                        "nextYearPeriod",
+                                        "oneWeekAgo",
+                                        "oneWeekFromNow",
+                                        "oneMonthAgo",
+                                        "oneMonthFromNow",
+                                        "daysAgo",
+                                        "daysFromNow",
+                                        "exactDate",
+                                        "dateRange",
+                                        "exactDateTime",
+                                        "exactFormatDate",
+                                        "pastWeek",
+                                        "pastMonth",
+                                        "pastYear",
+                                        "nextWeek",
+                                        "nextMonth",
+                                        "nextYear",
+                                        "pastNumberOfDays",
+                                        "nextNumberOfDays"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "numberOfDays": {
+                                      "maximum": 9007199254740991,
+                                      "minimum": 0,
+                                      "type": "integer"
+                                    },
+                                    "timeZone": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "timeZone"
+                                  ],
+                                  "type": "object"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "fieldId": {
+                                      "type": "string"
+                                    },
+                                    "tableId": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "const": "field",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "fieldId"
+                                  ],
+                                  "type": "object"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "nullable": {
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "enum": [
+                            "string",
+                            "number",
+                            "boolean",
+                            "string[]",
+                            "number[]",
+                            "boolean[]",
+                            "date"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ],
+                      "type": "object"
+                    },
+                    "propertyNames": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "recordId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "type": {
+                            "const": "parameter",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "name"
+                        ],
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "select": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "alias": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "arrayDistinct": {
+                              "type": "boolean"
+                            },
+                            "fieldId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "fieldId",
+                            "alias"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "alias": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "system": {
+                              "enum": [
+                                "id",
+                                "createdTime",
+                                "lastModifiedTime",
+                                "autoNumber",
+                                "version"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "system",
+                            "alias"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "prefixItems": [
+                      {
+                        "anyOf": [
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "alias": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "arrayDistinct": {
+                                "type": "boolean"
+                              },
+                              "fieldId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "fieldId",
+                              "alias"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "alias": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "system": {
+                                "enum": [
+                                  "id",
+                                  "createdTime",
+                                  "lastModifiedTime",
+                                  "autoNumber",
+                                  "version"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "system",
+                              "alias"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    ],
+                    "type": "array"
+                  },
+                  "sort": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "fieldId": {
+                              "type": "string"
+                            },
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "order": {
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "fieldId",
+                            "order"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "order": {
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ],
+                              "type": "string"
+                            },
+                            "system": {
+                              "enum": [
+                                "id",
+                                "createdTime",
+                                "lastModifiedTime",
+                                "autoNumber",
+                                "version"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "system",
+                            "order"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "alias": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "order": {
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "alias",
+                            "order"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "allowed": {
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "fieldId": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "fieldId"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "system": {
+                                        "enum": [
+                                          "id",
+                                          "createdTime",
+                                          "lastModifiedTime",
+                                          "autoNumber",
+                                          "version"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "system"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "field": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "name": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "const": "parameter",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "name"
+                              ],
+                              "type": "object"
+                            },
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "optional": {
+                              "type": "boolean"
+                            },
+                            "order": {
+                              "anyOf": [
+                                {
+                                  "enum": [
+                                    "asc",
+                                    "desc"
+                                  ],
+                                  "type": "string"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "name": {
+                                      "minLength": 1,
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "const": "parameter",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "name"
+                                  ],
+                                  "type": "object"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "order",
+                            "allowed"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "tableId": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "const": 1,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "version",
+                  "tableId",
+                  "kind",
+                  "select"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "aggregates": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "alias": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "fieldId": {
+                          "type": "string"
+                        },
+                        "statisticFunc": {
+                          "enum": [
+                            "count",
+                            "empty",
+                            "filled",
+                            "unique",
+                            "max",
+                            "min",
+                            "sum",
+                            "average",
+                            "checked",
+                            "unChecked",
+                            "percentEmpty",
+                            "percentFilled",
+                            "percentUnique",
+                            "percentChecked",
+                            "percentUnChecked",
+                            "earliestDate",
+                            "latestDate",
+                            "dateRangeOfDays",
+                            "dateRangeOfMonths",
+                            "totalAttachmentSize"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "fieldId",
+                        "statisticFunc",
+                        "alias"
+                      ],
+                      "type": "object"
+                    },
+                    "prefixItems": [
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "alias": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "fieldId": {
+                            "type": "string"
+                          },
+                          "statisticFunc": {
+                            "enum": [
+                              "count",
+                              "empty",
+                              "filled",
+                              "unique",
+                              "max",
+                              "min",
+                              "sum",
+                              "average",
+                              "checked",
+                              "unChecked",
+                              "percentEmpty",
+                              "percentFilled",
+                              "percentUnique",
+                              "percentChecked",
+                              "percentUnChecked",
+                              "earliestDate",
+                              "latestDate",
+                              "dateRangeOfDays",
+                              "dateRangeOfMonths",
+                              "totalAttachmentSize"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "fieldId",
+                          "statisticFunc",
+                          "alias"
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "type": "array"
+                  },
+                  "filter": {
+                    "$ref": "#/$defs/__schema0"
+                  },
+                  "groupBy": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "alias": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "arrayDistinct": {
+                          "type": "boolean"
+                        },
+                        "fieldId": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "fieldId",
+                        "alias"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "kind": {
+                    "const": "aggregate",
+                    "type": "string"
+                  },
+                  "page": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "includeTotal": {
+                        "type": "boolean"
+                      },
+                      "limit": {
+                        "anyOf": [
+                          {
+                            "maximum": 1000,
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "type": {
+                                "const": "parameter",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "name"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "offset": {
+                        "anyOf": [
+                          {
+                            "maximum": 2147483647,
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "type": {
+                                "const": "parameter",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "name"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "limit"
+                    ],
+                    "type": "object"
+                  },
+                  "parameters": {
+                    "additionalProperties": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "default": {
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "anyOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "items": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
+                                        "type": "boolean"
+                                      }
+                                    ]
+                                  },
+                                  "minItems": 1,
+                                  "type": "array"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "exactDate": {
+                                      "format": "date-time",
+                                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                                      "type": "string"
+                                    },
+                                    "exactDateEnd": {
+                                      "format": "date-time",
+                                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                                      "type": "string"
+                                    },
+                                    "mode": {
+                                      "enum": [
+                                        "today",
+                                        "tomorrow",
+                                        "yesterday",
+                                        "currentWeek",
+                                        "currentMonth",
+                                        "currentYear",
+                                        "lastWeek",
+                                        "lastMonth",
+                                        "lastYear",
+                                        "nextWeekPeriod",
+                                        "nextMonthPeriod",
+                                        "nextYearPeriod",
+                                        "oneWeekAgo",
+                                        "oneWeekFromNow",
+                                        "oneMonthAgo",
+                                        "oneMonthFromNow",
+                                        "daysAgo",
+                                        "daysFromNow",
+                                        "exactDate",
+                                        "dateRange",
+                                        "exactDateTime",
+                                        "exactFormatDate",
+                                        "pastWeek",
+                                        "pastMonth",
+                                        "pastYear",
+                                        "nextWeek",
+                                        "nextMonth",
+                                        "nextYear",
+                                        "pastNumberOfDays",
+                                        "nextNumberOfDays"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "numberOfDays": {
+                                      "maximum": 9007199254740991,
+                                      "minimum": 0,
+                                      "type": "integer"
+                                    },
+                                    "timeZone": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "timeZone"
+                                  ],
+                                  "type": "object"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "fieldId": {
+                                      "type": "string"
+                                    },
+                                    "tableId": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "const": "field",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "fieldId"
+                                  ],
+                                  "type": "object"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "nullable": {
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "enum": [
+                            "string",
+                            "number",
+                            "boolean",
+                            "string[]",
+                            "number[]",
+                            "boolean[]",
+                            "date"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ],
+                      "type": "object"
+                    },
+                    "propertyNames": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "sort": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "fieldId": {
+                              "type": "string"
+                            },
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "order": {
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "fieldId",
+                            "order"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "order": {
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ],
+                              "type": "string"
+                            },
+                            "system": {
+                              "enum": [
+                                "id",
+                                "createdTime",
+                                "lastModifiedTime",
+                                "autoNumber",
+                                "version"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "system",
+                            "order"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "alias": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "order": {
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "alias",
+                            "order"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "allowed": {
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "fieldId": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "fieldId"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                      "system": {
+                                        "enum": [
+                                          "id",
+                                          "createdTime",
+                                          "lastModifiedTime",
+                                          "autoNumber",
+                                          "version"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "system"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            "field": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "name": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "const": "parameter",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "name"
+                              ],
+                              "type": "object"
+                            },
+                            "nulls": {
+                              "enum": [
+                                "first",
+                                "last"
+                              ],
+                              "type": "string"
+                            },
+                            "optional": {
+                              "type": "boolean"
+                            },
+                            "order": {
+                              "anyOf": [
+                                {
+                                  "enum": [
+                                    "asc",
+                                    "desc"
+                                  ],
+                                  "type": "string"
+                                },
+                                {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "name": {
+                                      "minLength": 1,
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "const": "parameter",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "name"
+                                  ],
+                                  "type": "object"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "order",
+                            "allowed"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "tableId": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "const": 1,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "version",
+                  "tableId",
+                  "kind",
+                  "aggregates"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "fallback": {
+            "additionalProperties": false,
+            "properties": {
+              "outputs": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "alias": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "nullable": {
+                      "type": "boolean"
+                    },
+                    "wireType": {
+                      "enum": [
+                        "string",
+                        "numberOrString",
+                        "boolean",
+                        "unknown"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "alias"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "parameterOrder": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "parameters": {
+                "additionalProperties": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "default": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "boolean"
+                                }
+                              ]
+                            },
+                            {
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  }
+                                ]
+                              },
+                              "minItems": 1,
+                              "type": "array"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "exactDate": {
+                                  "format": "date-time",
+                                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                                  "type": "string"
+                                },
+                                "exactDateEnd": {
+                                  "format": "date-time",
+                                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                                  "type": "string"
+                                },
+                                "mode": {
+                                  "enum": [
+                                    "today",
+                                    "tomorrow",
+                                    "yesterday",
+                                    "currentWeek",
+                                    "currentMonth",
+                                    "currentYear",
+                                    "lastWeek",
+                                    "lastMonth",
+                                    "lastYear",
+                                    "nextWeekPeriod",
+                                    "nextMonthPeriod",
+                                    "nextYearPeriod",
+                                    "oneWeekAgo",
+                                    "oneWeekFromNow",
+                                    "oneMonthAgo",
+                                    "oneMonthFromNow",
+                                    "daysAgo",
+                                    "daysFromNow",
+                                    "exactDate",
+                                    "dateRange",
+                                    "exactDateTime",
+                                    "exactFormatDate",
+                                    "pastWeek",
+                                    "pastMonth",
+                                    "pastYear",
+                                    "nextWeek",
+                                    "nextMonth",
+                                    "nextYear",
+                                    "pastNumberOfDays",
+                                    "nextNumberOfDays"
+                                  ],
+                                  "type": "string"
+                                },
+                                "numberOfDays": {
+                                  "maximum": 9007199254740991,
+                                  "minimum": 0,
+                                  "type": "integer"
+                                },
+                                "timeZone": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "mode",
+                                "timeZone"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "fieldId": {
+                                  "type": "string"
+                                },
+                                "tableId": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "const": "field",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "fieldId"
+                              ],
+                              "type": "object"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "nullable": {
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "string[]",
+                        "number[]",
+                        "boolean[]",
+                        "date"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                "propertyNames": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              "sql": {
+                "maxLength": 200000,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sql"
+            ],
+            "type": "object"
+          },
+          "mode": {
+            "enum": [
+              "structured",
+              "auto",
+              "sql-query"
+            ],
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "many",
+              "one"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "propertyNames": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[a-z_$][\\w$]*(?![\\s\\S])",
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "schemaVersion": {
+      "const": 1,
+      "type": "number"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "queries"
+  ],
+  "type": "object"
+}
